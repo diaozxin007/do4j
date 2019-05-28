@@ -1,13 +1,16 @@
 package com.xilidou.do4j.entity;
 
+import cn.leancloud.AVObject;
+import cn.leancloud.annotation.AVClassName;
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString
-public class ItemEntity {
+@AVClassName("item")
+public class ItemEntity extends AVObject {
 
-	private long id;
+	private String id;
 
 	private String title;
 

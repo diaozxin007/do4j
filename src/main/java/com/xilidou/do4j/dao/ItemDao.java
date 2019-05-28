@@ -1,4 +1,12 @@
 package com.xilidou.do4j.dao;
 
-public interface ItemDao {
+import com.xilidou.do4j.entity.ItemEntity;
+
+/**
+ * @author Zhengxin
+ */
+public interface ItemDao extends BaseDao<ItemEntity> {
+
+
+
 }
