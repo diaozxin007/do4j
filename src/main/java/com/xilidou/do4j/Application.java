@@ -11,7 +11,7 @@ public class Application {
 	private static String appKey = System.getenv("LEANCLOUD_APP_KEY");
 
 	public static void main(String[] args) {
-		AVOSCloud.initialize(appId,appKey);
+//		AVOSCloud.initialize(appId,appKey);
 		SpringApplication.run(Application.class, args);
 	}
 
