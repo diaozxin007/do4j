@@ -1,21 +1,24 @@
 package com.xilidou.do4j.entity;
 
-import cn.leancloud.AVObject;
-import cn.leancloud.annotation.AVClassName;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * item实体
+ * @author zhengxin
  */
 @Data
 @ToString
-@AVClassName("item")
-public class ItemEntity extends AVObject {
+@Table(name = "item")
+@Entity
+public class ItemEntity{
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	/**
@@ -116,7 +119,7 @@ public class ItemEntity extends AVObject {
 	 *
 	 * 一个包含n个时间点的List，标识通知的时间列表
 	 */
-	private List<LocalDateTime> noticeDetail;
+	private String noticeDetail;
 
 	/**
 	 * 检查间隔(仅项目)
