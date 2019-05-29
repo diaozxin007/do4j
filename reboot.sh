@@ -40,6 +40,6 @@ fi
 rm -f tpid
 
 echo 'App is Starting...'
-nohup java $JAVA_OPTS -jar $RESOURCE_NAME >$LOG_NAME 2>&1 &
+nohup java $JAVA_OPTS -jar $RESOURCE_NAME --spring.profiles.active=dev >$LOG_NAME 2>&1 &
 echo $! > tpid
 echo Start Success!
