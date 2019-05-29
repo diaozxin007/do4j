@@ -15,7 +15,8 @@ before_install:
 - chmod 600 ~/.ssh/id_rsa
 
 after_script:
-  - sh reboot.sh
+  - cd target
+  - scp -o stricthostkeychecking=no -r ./* travis@todo.xilidou.com:/home/travis/java/do4j/
 
 
 
