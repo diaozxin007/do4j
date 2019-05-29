@@ -65,6 +65,7 @@
     </dependencies>
 
     <build>
+        <finalName>do4j</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
