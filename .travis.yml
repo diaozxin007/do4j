@@ -12,5 +12,10 @@ addons:
 before_install:
 - openssl aes-256-cbc -K $encrypted_c4421c98beb1_key -iv $encrypted_c4421c98beb1_iv
   -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+
+after_success:
+  - chmod 600 ~/.ssh/id_rsa   #还是Linux文件权限问题
+#  - ssh ubuntu@todo.xilidou.com-o StrictHostKeyChecking=no 'cd ~/ && git pull && npm install && npm run build'
 
 
