@@ -1,6 +1,5 @@
 package com.xilidou.do4j.entity;
 
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.ToString;
 
@@ -19,7 +18,7 @@ public class ItemEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	/**
 	 * 标题
@@ -34,7 +33,7 @@ public class ItemEntity{
 	/**
 	 * 是否已标注
 	 */
-	private boolean marked;
+	private Boolean marked;
 
 	/**
 	 * 类型(仅项目层级)
@@ -44,7 +43,7 @@ public class ItemEntity{
 	/**
 	 * 父级item的id
 	 */
-	private long parentId;
+	private Long parentId;
 
 	/**
 	 * 层级路径 ex: 1.2.3.
@@ -54,12 +53,12 @@ public class ItemEntity{
 	/**
 	 * 在层级中的顺序
 	 */
-	private int seq;
+	private Integer seq;
 
 	/**
 	 * 预计持续时间(不是具体时间点，是一个时间段，比如3分钟)，单位为 分钟，最小支持到1分钟，小于1分钟归为1分钟
 	 */
-	private long expectDuration;
+	private Long expectDuration;
 
 	/**
 	 * 推迟至
@@ -79,7 +78,7 @@ public class ItemEntity{
 	/**
 	 * 是否重复
 	 */
-	private int canRepeat;
+	private Boolean canRepeat;
 
 	/**
 	 * 重复时间单位
@@ -89,7 +88,7 @@ public class ItemEntity{
 	/**
 	 * 重复时间数值，仅支持整数。ex: 当intervalUnit选择天，则 1 代表 1天，不支持1.5天
 	 */
-	private int intervalValue;
+	private Integer intervalValue;
 
 	/**
 	 * 重复设置扩展字段。 可分为以下几种情况：<br>
@@ -112,7 +111,7 @@ public class ItemEntity{
 	 * 1 : 完成
 	 * 2 : 已分配日期
 	 */
-	private int intervalCondition;
+	private Integer intervalCondition;
 
 	/**
 	 * 通知详情
@@ -140,7 +139,7 @@ public class ItemEntity{
 	/**
 	 * 用户id
 	 */
-	private long userId;
+	private Long userId;
 
 	/**
 	 * 创建时间

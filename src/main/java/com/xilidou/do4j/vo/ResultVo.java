@@ -5,10 +5,12 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class ActionVo {
+public class ResultVo {
 
-	private String id;
+	private int code;
 
-	private String title;
+	private String message;
+
+	private long id;
 
 }
