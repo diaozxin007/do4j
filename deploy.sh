@@ -4,6 +4,10 @@ RESOURCE_NAME=target/do4j.jar
 LOG_NAME=do4j.log
 MAX_TIMEOUT=20
 
+git pull
+
+mvn clean package -DskipTests=true
+
 tpid=`ps -ef|grep $RESOURCE_NAME|grep -v grep|grep -v kill|awk '{print $2}'`
 
 if [ ${tpid} ]; then

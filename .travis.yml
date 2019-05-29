@@ -14,12 +14,12 @@ before_install:
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
 
-after_script:
-  - ssh -tt travis@todo.xilidou.com
-  - cd /home/travis/do4j
-  - git pull
-  - mvn clean package -DskipTests=true
-  - sh reboot.sh
+#after_script:
+#  - ssh -tt travis@todo.xilidou.com
+#  - cd /home/travis/do4j
+#  - git pull
+#  - mvn clean package -DskipTests=true
+#  - sh reboot.sh
 
 
 
