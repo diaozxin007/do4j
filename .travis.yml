@@ -13,10 +13,9 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_c4421c98beb1_key -iv $encrypted_c4421c98beb1_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
-- pwd
 
-#after_script:
-#  - cd
+after_script:
+  - sh reboot.sh
 
 
 
