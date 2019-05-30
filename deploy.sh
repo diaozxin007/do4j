@@ -4,6 +4,8 @@ RESOURCE_NAME=target/do4j.jar
 LOG_NAME=do4j.log
 MAX_TIMEOUT=20
 
+cd do4j
+
 git pull
 
 mvn clean package -DskipTests=true

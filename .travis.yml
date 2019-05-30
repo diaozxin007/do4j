@@ -15,7 +15,7 @@ before_install:
 - chmod 600 ~/.ssh/id_rsa
 
 after_script:
-  - ssh -tt travis@todo.xilidou.com "bash" < ./deploy.sh
+  - ssh -tt travis@todo.xilidou.com "cd do4j && bash deploy.sh"
 #  - cd /home/travis/do4j
 #  - git pull
 #  - mvn clean package -DskipTests=true
