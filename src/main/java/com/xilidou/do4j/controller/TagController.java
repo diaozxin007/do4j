@@ -12,35 +12,46 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import com.xilidou.do4j.service.TagService;
+import com.xilidou.do4j.vo.ResultVo;
+import com.xilidou.do4j.vo.TagVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author Zhengxin
  */
 @RestController
-@RequestMapping("/tag")
+@RequestMapping("/tags")
 public class TagController {
 
-    @Autowired
-    private TagService tagService;
+	@Autowired
+	private TagService tagService;
 
-    @GetMapping("/{userId}")
-    @ResponseBody
-    @ApiOperation(value = "根据用户id获取用户所有标签")
-    public List<TagVo> findUserAllTags(long userId){
-        List<TagEntity> allByUserId = tagService.findAllByUserId(userId);
-        List<TagVo> resultVo = Lists.newArrayList();
-        if (CollectionUtils.isNotEmpty(allByUserId)){
-            resultVo = allByUserId.stream().map(i -> entityToVo(i)).collect(Collectors.toList());
-        }
-        return resultVo;
-    }
+	@PostMapping("/")
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResultVo createdTag(TagVo tagVo){
 
-    private TagVo entityToVo(TagEntity entity){
-        TagVo tagVo = new TagVo();
-        BeanUtils.copyProperties(entity,tagVo);
-        return tagVo;
-    }
+		long save = tagService.save(tagVo);
+
+		ResultVo resultVo = new ResultVo();
+
+		resultVo.setId(save);
+
+		return resultVo;
+
+	}
+
+	@GetMapping("/")
+	public List<TagVo> getTags(){
+
+		return tagService.getAll();
+
+	}
+
+
+
 }
