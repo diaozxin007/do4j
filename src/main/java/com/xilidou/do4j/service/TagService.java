@@ -1,7 +1,7 @@
 package com.xilidou.do4j.service;
 
 import com.xilidou.do4j.entity.TagEntity;
-import com.xilidou.do4j.repository.ItagRepository;
+import com.xilidou.do4j.repository.TagRepository;
 import com.xilidou.do4j.vo.TagVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class TagService {
 
 	@Autowired
-	private ItagRepository tagRepository;
+	private TagRepository tagRepository;
 
 	public long save(TagVo tagVo){
 		TagEntity tagEntity = new TagEntity();

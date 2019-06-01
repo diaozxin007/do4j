@@ -6,13 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 /**
- * @Author: renmagical
- * @Date: 2019-06-01 22:42
- * @Description:
+ * @author Zhengxin
  */
 public interface TagRepository extends JpaRepository<TagEntity,Long> {
 
-    List<TagEntity> findByUserId(long userId);
+	List<TagEntity> getAllByIdIn(List<Long> ids);
 
-    List<TagEntity> findByUserIdAndStatus(long userId,int status);
 }
