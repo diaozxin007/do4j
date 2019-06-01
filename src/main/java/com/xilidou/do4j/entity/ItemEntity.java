@@ -83,7 +83,7 @@ public class ItemEntity{
 	/**
 	 * 重复时间单位
 	 */
-	private String intervalUnit;
+	private Integer intervalUnit;
 
 	/**
 	 * 重复时间数值，仅支持整数。ex: 当intervalUnit选择天，则 1 代表 1天，不支持1.5天
@@ -135,7 +135,7 @@ public class ItemEntity{
 	/**
 	 * 单位
 	 */
-	private String reviewIntervalUnit;
+	private Integer reviewIntervalUnit;
 
 	/**
 	 * 附注

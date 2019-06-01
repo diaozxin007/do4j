@@ -28,17 +28,17 @@ public class BaseTimeVo {
 
 	private Integer intervalValue;
 
-	private String  intervalUnit;
+	private Integer  intervalUnit;
 
-	private List<Integer> daysOfMonth;
+	private List<Integer> weekOfMonth;
 
 	private List<Integer> daysOfWeek;
 
-	private Integer reviewInterval;
+	private Integer reviewIntervalValue;
 
 	private Integer reviewIntervalUnit;
 
-	private LocalDateTime noticeDetail;
+	private List<LocalDateTime> noticeTimes;
 
 
 

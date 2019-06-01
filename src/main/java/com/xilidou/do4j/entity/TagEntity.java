@@ -6,6 +6,9 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * @author Zhengxin
+ */
 @Data
 @ToString
 @Entity
