@@ -129,7 +129,13 @@ public class ItemEntity{
 	 *     "value": 2       //2天
 	 * }
 	 */
-	private String reviewInterval;
+	private Integer reviewIntervalValue;
+
+
+	/**
+	 * 单位
+	 */
+	private String reviewIntervalUnit;
 
 	/**
 	 * 附注

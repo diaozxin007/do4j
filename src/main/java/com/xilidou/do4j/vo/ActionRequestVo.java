@@ -29,4 +29,6 @@ public class ActionRequestVo {
 
 	private boolean marked;
 
+	private BaseTimeVo timeVo;
+
 }
