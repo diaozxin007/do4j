@@ -19,6 +19,8 @@ public class TagVo {
 
 	private Integer status;
 
+	private Integer parentId;
+
 	private LocalDateTime createdAt;
 
 	private LocalDateTime updateTime;
