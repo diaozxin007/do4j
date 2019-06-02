@@ -25,25 +25,22 @@ public class ActionController {
 	private ActionService actionService;
 
 	@GetMapping("/{id}")
-	@ApiOperation(value="获取action详情")
-	public ActionResponseVo getAction(@PathVariable long id){
-		ActionResponseVo actionVo = new ActionResponseVo();
-		ItemEntity itemEntity = actionService.get(id);
-		BeanUtils.copyProperties(itemEntity,actionVo);
-		return actionVo;
+	@ApiOperation(value = "获取action详情")
+	public ActionResponseVo getAction(@PathVariable long id) {
+		return actionService.get(id);
 	}
 
 	@GetMapping("")
-	@ApiOperation(value="获取action列表")
-	public List<ActionResponseVo> getActions(){
+	@ApiOperation(value = "获取action列表")
+	public List<ActionResponseVo> getActions() {
 		ActionResponseVo actionVo = new ActionResponseVo();
 		return Lists.newArrayList(actionVo);
 	}
 
 	@PostMapping("")
-	@ApiOperation(value="创建")
+	@ApiOperation(value = "创建")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResultVo createActon(@RequestBody ActionRequestVo actionVo){
+	public ResultVo createActon(@RequestBody ActionRequestVo actionVo) {
 		long saveId = actionService.save(actionVo);
 		ResultVo resultVo = new ResultVo();
 		resultVo.setId(saveId);
@@ -51,8 +48,8 @@ public class ActionController {
 	}
 
 	@PutMapping("/{id}")
-	@ApiOperation(value="修改")
-	public ResultVo modifyActon(@PathVariable long id){
+	@ApiOperation(value = "修改")
+	public ResultVo modifyActon(@PathVariable long id) {
 		return new ResultVo();
 	}
 

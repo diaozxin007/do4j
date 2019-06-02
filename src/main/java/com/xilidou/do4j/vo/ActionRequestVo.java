@@ -25,6 +25,8 @@ public class ActionRequestVo {
 
 	private long objectId;
 
+	private int seq;
+
 	private int status;
 
 	private boolean marked;

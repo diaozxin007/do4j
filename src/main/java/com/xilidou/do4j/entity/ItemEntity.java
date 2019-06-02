@@ -2,6 +2,9 @@ package com.xilidou.do4j.entity;
 
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,6 +17,7 @@ import java.time.LocalDateTime;
 @ToString
 @Table(name = "item")
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class ItemEntity{
 
 	@Id
@@ -150,10 +154,13 @@ public class ItemEntity{
 	/**
 	 * 创建时间
 	 */
+	@CreatedDate
 	private LocalDateTime createAt;
 
 	/**
 	 * 更新时间
 	 */
+
+	@LastModifiedDate
 	private LocalDateTime updateAt;
 }
