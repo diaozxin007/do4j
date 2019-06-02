@@ -13,16 +13,18 @@ import java.util.List;
  */
 @Data
 @ToString
-@ApiModel
+@ApiModel(description = "基础时间对象")
 public class BaseTimeVo {
 
 	private Long expectDuration;
 
-	@JsonFormat(pattern = "YYYY-MM-DD HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime delayToTime;
 
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime upToTime;
 
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime finishedTime;
 
 	private Boolean canRepeat;
@@ -39,6 +41,7 @@ public class BaseTimeVo {
 
 	private Integer reviewIntervalUnit;
 
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private List<LocalDateTime> noticeTimes;
 
 
