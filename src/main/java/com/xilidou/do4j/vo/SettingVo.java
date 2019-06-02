@@ -20,8 +20,7 @@ public class SettingVo {
 
     private long userId;
 
-    //todo 写成对象的形式，在数据层存储时再转成字符串
-    private String content;
+    private SettingContentVo content;
 
     private LocalDateTime createAt;
 
