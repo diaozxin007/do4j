@@ -10,12 +10,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.xilidou.do4j.service.TagService;
 import com.xilidou.do4j.vo.ResultVo;
-import com.xilidou.do4j.vo.TagVo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +29,7 @@ public class TagController {
 
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResultVo createdTag(TagVo tagVo){
+	public ResultVo createdTag(@RequestBody TagVo tagVo){
 
 		long save = tagService.save(tagVo);
 

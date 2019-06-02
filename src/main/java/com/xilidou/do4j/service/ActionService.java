@@ -1,10 +1,12 @@
 package com.xilidou.do4j.service;
 
 import com.xilidou.do4j.entity.ItemEntity;
+import com.xilidou.do4j.entity.ItemTagEntity;
 import com.xilidou.do4j.repository.ItemRepository;
 import com.xilidou.do4j.utils.JsonUtils;
 import com.xilidou.do4j.vo.ActionRequestVo;
 import com.xilidou.do4j.vo.BaseTimeVo;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,13 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
+/**
+ * @author Zhengxin
+ */
 @Service
+@Slf4j
 public class ActionService {
 
 	@Autowired
@@ -21,6 +28,9 @@ public class ActionService {
 
 	@Autowired
 	private TimeService timeService;
+
+	@Autowired
+	private ItemTagService itemTagService;
 
 	public ItemEntity get(long id){
 		return itemRepository.getOne(id);
@@ -33,9 +43,29 @@ public class ActionService {
 
 		ItemEntity save = itemRepository.save(itemEntity);
 
+		long id = save.getId();
+
+		List<Long> tagIds = actionRequestVo.getTagIds();
+
+		saveItemTag(tagIds,id);
+
 		return save.getId();
 
 
+	}
+
+	private void saveItemTag(List<Long> tagIds,Long itemId){
+		//标签不为空
+		if(CollectionUtils.isNotEmpty(tagIds)){
+			List<ItemTagEntity> collect = tagIds.stream().map(t -> {
+				ItemTagEntity itemTagEntity = new ItemTagEntity();
+				itemTagEntity.setTagId(t);
+				itemTagEntity.setItemId(itemId);
+				return itemTagEntity;
+			}).collect(Collectors.toList());
+
+			itemTagService.save(collect);
+		}
 	}
 
 	private ItemEntity actionToItem(ActionRequestVo actionRequestVo){
@@ -46,21 +76,24 @@ public class ActionService {
 
 		BaseTimeVo timeVo = actionRequestVo.getTimeVo();
 
-		itemEntity.setCanRepeat(timeVo.getCanRepeat());
-		itemEntity.setExpectDuration(timeVo.getExpectDuration());
-		itemEntity.setDelayToTime(timeVo.getDelayToTime());
-		itemEntity.setUpToTime(timeVo.getUpToTime());
-		itemEntity.setIntervalUnit(timeVo.getIntervalUnit());
-		itemEntity.setIntervalValue(timeVo.getReviewIntervalValue());
+		if(timeVo != null) {
+
+			itemEntity.setCanRepeat(timeVo.getCanRepeat());
+			itemEntity.setExpectDuration(timeVo.getExpectDuration());
+			itemEntity.setDelayToTime(timeVo.getDelayToTime());
+			itemEntity.setUpToTime(timeVo.getUpToTime());
+			itemEntity.setIntervalUnit(timeVo.getIntervalUnit());
+			itemEntity.setIntervalValue(timeVo.getReviewIntervalValue());
 
 
-		String intervalExt = timeService.getIntervalExtFromActionTimeVo(timeVo);
-		itemEntity.setIntervalExt(intervalExt);
+			String intervalExt = timeService.getIntervalExtFromActionTimeVo(timeVo);
+			itemEntity.setIntervalExt(intervalExt);
 
-		List<LocalDateTime> noticeTimes = timeVo.getNoticeTimes();
-		if(CollectionUtils.isNotEmpty(noticeTimes)){
-			String notice = JsonUtils.write(noticeTimes);
-			itemEntity.setNoticeDetail(notice);
+			List<LocalDateTime> noticeTimes = timeVo.getNoticeTimes();
+			if (CollectionUtils.isNotEmpty(noticeTimes)) {
+				String notice = JsonUtils.write(noticeTimes);
+				itemEntity.setNoticeDetail(notice);
+			}
 		}
 
 

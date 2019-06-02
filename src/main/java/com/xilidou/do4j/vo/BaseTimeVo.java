@@ -1,7 +1,7 @@
 package com.xilidou.do4j.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiParam;
 import lombok.Data;
 import lombok.ToString;
 
@@ -18,6 +18,7 @@ public class BaseTimeVo {
 
 	private Long expectDuration;
 
+	@JsonFormat(pattern = "YYYY-MM-DD HH:mm:ss")
 	private LocalDateTime delayToTime;
 
 	private LocalDateTime upToTime;

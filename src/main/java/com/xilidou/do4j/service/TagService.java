@@ -26,6 +26,7 @@ public class TagService {
 	public long save(TagVo tagVo){
 		TagEntity tagEntity = new TagEntity();
 		BeanUtils.copyProperties(tagVo,tagEntity);
+		tagEntity.setStatus(0);
 		TagEntity save = tagRepository.save(tagEntity);
 		return save.getId();
 

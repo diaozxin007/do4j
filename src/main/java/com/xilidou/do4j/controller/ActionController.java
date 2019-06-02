@@ -43,7 +43,7 @@ public class ActionController {
 	@PostMapping("")
 	@ApiOperation(value="创建")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResultVo createActon(ActionRequestVo actionVo){
+	public ResultVo createActon(@RequestBody ActionRequestVo actionVo){
 		long saveId = actionService.save(actionVo);
 		ResultVo resultVo = new ResultVo();
 		resultVo.setId(saveId);
