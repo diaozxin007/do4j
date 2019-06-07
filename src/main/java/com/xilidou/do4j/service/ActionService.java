@@ -45,19 +45,24 @@ public class ActionService {
 	}
 
 	public long save(ActionRequestVo actionRequestVo) {
-
 		ItemEntity itemEntity = actionToItem(actionRequestVo);
-
 		ItemEntity save = itemRepository.save(itemEntity);
-
 		long id = save.getId();
-
 		List<Long> tagIds = actionRequestVo.getTagIds();
-
 		saveItemTag(tagIds, id);
-
 		return save.getId();
 
+	}
+
+	public long update(ActionRequestVo actionRequestVo){
+		ItemEntity itemEntity = actionToItem(actionRequestVo);
+		ItemEntity save = itemRepository.save(itemEntity);
+		long id = save.getId();
+		List<Long> tagIds = actionRequestVo.getTagIds();
+		itemTagService.deleteByItemIds(Lists.newArrayList(id));
+
+		saveItemTag(tagIds,id);
+		return save.getId();
 	}
 
 	public List<ActionResponseVo> findByStatus(List<Integer> statusList){

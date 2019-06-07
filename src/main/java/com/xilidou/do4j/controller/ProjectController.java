@@ -14,36 +14,36 @@ import java.util.List;
  * @author Zhengxin
  */
 @RestController
-@RequestMapping("/object")
+@RequestMapping("/projects")
 public class ProjectController {
 
 
 	@GetMapping("")
-	@ApiOperation(value="获取object列表")
+	@ApiOperation(value="获取projects列表")
 	public List<ProjectSimpleResponseVo> getObject(){
 		return Lists.newArrayList(new ProjectSimpleResponseVo());
 	}
 
 	@GetMapping("/{id}")
-	@ApiOperation(value="获取object详情")
+	@ApiOperation(value="获取projects详情")
 	public ProjectResponseVo getObject(@PathVariable long id){
 		return new ProjectResponseVo();
 	}
 
 	@PostMapping
-	@ApiOperation(value="创建object")
+	@ApiOperation(value="创建projects")
 	public ProjectResponseVo createObject(ProjectRequestVo requestVo){
 		return new ProjectResponseVo();
 	}
 
 	@PutMapping("/{id}")
-	@ApiOperation(value = "修改 object")
+	@ApiOperation(value = "修改 projects")
 	public ProjectResponseVo updateObject(ProjectRequestVo requestVo){
 		return new ProjectResponseVo();
 	}
 
 	@GetMapping("/{id}/actions")
-	@ApiOperation(value = "获取 object 下的列表")
+	@ApiOperation(value = "获取 projects 下的列表")
 	public List<ActionResponseVo> getActionList(@PathVariable long id){
 		return Lists.newArrayList(new ActionResponseVo());
 	}
