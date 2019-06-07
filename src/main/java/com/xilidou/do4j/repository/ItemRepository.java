@@ -12,4 +12,6 @@ public interface ItemRepository extends JpaRepository<ItemEntity,Long> {
 
 	List<ItemEntity> findAllByTypeAndStatusIn(String type,List<Integer> status);
 
+	List<ItemEntity> findAllByLevelPathStartingWithAndStatusIn(String levelPath,List<Integer> status);
+
 }
