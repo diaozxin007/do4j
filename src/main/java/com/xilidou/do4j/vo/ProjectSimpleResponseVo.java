@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @ToString
-public class ObjectSimpleResponseVo {
+public class ProjectSimpleResponseVo {
 
 	private String title;
 

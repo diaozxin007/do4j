@@ -1,5 +1,7 @@
 package com.xilidou.do4j.service;
 
+import com.google.common.collect.Lists;
+import com.xilidou.do4j.constants.Const;
 import com.xilidou.do4j.entity.ItemEntity;
 import com.xilidou.do4j.entity.ItemTagEntity;
 import com.xilidou.do4j.repository.ItemRepository;
@@ -55,6 +57,17 @@ public class ActionService {
 		saveItemTag(tagIds, id);
 
 		return save.getId();
+
+	}
+
+	public List<ActionResponseVo> findByStatus(List<Integer> statusList){
+
+		if(CollectionUtils.isEmpty(statusList)){
+			statusList = Lists.newArrayList(Const.Status.ACTIVE);
+		}
+
+		List<ItemEntity> itemEntityList = itemRepository.findAllByTypeAndStatusIn(Const.ItemType.Action.type, statusList);
+		return itemEntityList.stream().map(this::itemToResponseVo).collect(Collectors.toList());
 
 	}
 

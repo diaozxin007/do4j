@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @ToString
 public class ActionResponseVo {
 
-	private String id;
+	private long id;
 
 	private String title;
 

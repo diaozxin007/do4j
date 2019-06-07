@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @ToString
 @ApiModel
-public class ObjectRequestVo {
+public class ProjectRequestVo {
 
 	private Long id;
 

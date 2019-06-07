@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Data
 @ToString
-public class ObjectResponseVo {
+public class ProjectResponseVo {
 
 	private Long id;
 

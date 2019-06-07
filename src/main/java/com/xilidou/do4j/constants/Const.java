@@ -1,5 +1,7 @@
 package com.xilidou.do4j.constants;
 
+import lombok.Data;
+
 /**
  * @Author: renmagical
  * @Date: 2019-06-01 23:13
@@ -11,8 +13,24 @@ public class Const {
      * 统一状态
      */
     public class Status{
-        public final static int ACTIVE = 0;
-        public final static int DELETED = 1;
+        public static final int ACTIVE = 0;
+        public static final int DELETED = 1;
+        public static final int PASUD = 2;
+        public static final int FININSHED = 3;
+    }
+
+    public enum ItemType{
+
+        Action("action","活动"),
+        Project("prjoct","项目");
+
+        public String type;
+        public String name;
+
+        ItemType(String type,String name){
+            this.type = type;
+            this.name = name;
+        }
     }
 
     /**

@@ -7,6 +7,7 @@ import com.xilidou.do4j.vo.ActionRequestVo;
 import com.xilidou.do4j.vo.ActionResponseVo;
 import com.xilidou.do4j.vo.ResultVo;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/actions")
+@Slf4j
 public class ActionController {
 
 	@Autowired
@@ -27,14 +29,14 @@ public class ActionController {
 	@GetMapping("/{id}")
 	@ApiOperation(value = "获取action详情")
 	public ActionResponseVo getAction(@PathVariable long id) {
+		log.info("get id is {}",id);
 		return actionService.get(id);
 	}
 
 	@GetMapping("")
 	@ApiOperation(value = "获取action列表")
 	public List<ActionResponseVo> getActions() {
-		ActionResponseVo actionVo = new ActionResponseVo();
-		return Lists.newArrayList(actionVo);
+		return actionService.findByStatus(null);
 	}
 
 	@PostMapping("")
