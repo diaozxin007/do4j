@@ -21,7 +21,7 @@ import java.util.List;
  * @author Zhengxin
  */
 @RestController
-@RequestMapping("/tags")
+@RequestMapping("/api/tags")
 public class TagController {
 
 	@Autowired

@@ -13,7 +13,7 @@ import java.util.List;
  * @author Zhengxin
  */
 @RestController
-@RequestMapping("/projects")
+@RequestMapping("/api//projects")
 public class ProjectController {
 
 	@Autowired

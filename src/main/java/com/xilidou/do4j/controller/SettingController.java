@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * @Description: 用户设置Controller
  */
 @RestController
-@RequestMapping("/setting")
+@RequestMapping("/api/setting")
 public class SettingController {
 
     @Autowired

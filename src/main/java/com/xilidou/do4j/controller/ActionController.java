@@ -16,7 +16,7 @@ import java.util.List;
  * @author zhengxin
  */
 @RestController
-@RequestMapping("/actions")
+@RequestMapping("/api/actions")
 @Slf4j
 public class ActionController {
 

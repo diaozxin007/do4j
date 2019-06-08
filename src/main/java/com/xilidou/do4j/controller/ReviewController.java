@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Zhengxin
  */
 @RestController
-@RequestMapping("/review")
+@RequestMapping("/api/review")
 public class ReviewController {
 }
