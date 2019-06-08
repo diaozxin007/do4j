@@ -48,7 +48,9 @@ public class UserService {
 		String password = vo.getPassword();
 
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-		UserEntity user = userRepository.findByUsername(username).get();
+		UserEntity user = userRepository.findByUsername(username).orElseThrow(()->
+			new CustomException("error",HttpStatus.FORBIDDEN)
+		);
 		String token = tokenProvider.createToken(username, user.getRoles());
 		UserResponseVo userResponseVo = new UserResponseVo();
 		userResponseVo.setToken(token);

@@ -1,5 +1,6 @@
 package com.xilidou.do4j.auth;
 
+import com.github.benmanes.caffeine.cache.Cache;
 import com.xilidou.do4j.entity.RoleEntity;
 import com.xilidou.do4j.entity.UserEntity;
 import com.xilidou.do4j.repository.UserRepository;
@@ -22,9 +23,16 @@ public class MyUserDetails implements UserDetailsService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private Cache<String,UserDetails> cache;
+
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) {
+		return cache.get(username, this::getUserDetails);
+	}
+
+	private UserDetails getUserDetails(String username) {
 		UserEntity user = userRepository.findByUsername(username)
 				.orElseThrow(() ->
 						new UsernameNotFoundException("User '" + username + "' not found")
