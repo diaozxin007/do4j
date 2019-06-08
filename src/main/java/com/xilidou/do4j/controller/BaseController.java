@@ -9,7 +9,7 @@ public class BaseController {
 	@Autowired
 	private HttpServletRequest request;
 
-	public long getUid(){
+	protected long getUid(){
 
 		return (long) request.getAttribute("uid");
 

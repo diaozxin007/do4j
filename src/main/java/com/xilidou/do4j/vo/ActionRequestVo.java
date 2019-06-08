@@ -19,6 +19,8 @@ public class ActionRequestVo {
 
 	private String title;
 
+	private long userId;
+
 	private String description;
 
 	private List<Long> tagIds;

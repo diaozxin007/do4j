@@ -16,6 +16,8 @@ public class ProjectRequestVo {
 
 	private Long id;
 
+	private Long userId;
+
 	private String title;
 
 	private Integer status;

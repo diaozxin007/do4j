@@ -20,8 +20,7 @@ public class UserController {
 
 	@PostMapping("/signin")
 	public UserResponseVo signIn(@RequestBody @Valid UserRequestVo vo){
-		UserResponseVo siginin = userService.signIn(vo);
-		return siginin;
+		return userService.signIn(vo);
 
 	}
 
@@ -29,7 +28,6 @@ public class UserController {
 
 	@PostMapping("/signup")
 	public UserResponseVo signUp(@RequestBody UserRequestVo vo){
-
 		return userService.signUp(vo);
 
 	}

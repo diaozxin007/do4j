@@ -33,11 +33,6 @@ public class ActionController extends BaseController{
 	@GetMapping("")
 	@ApiOperation(value = "获取action列表")
 	public List<ActionResponseVo> getActions() {
-
-		long uid = getUid();
-
-		log.info("uid is {}", uid);
-
 		return actionService.findByStatus(null);
 	}
 
@@ -45,6 +40,8 @@ public class ActionController extends BaseController{
 	@ApiOperation(value = "创建")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResultVo createActon(@RequestBody ActionRequestVo actionVo) {
+		long uid = getUid();
+		actionVo.setUserId(uid);
 		long saveId = actionService.save(actionVo);
 		ResultVo resultVo = new ResultVo();
 		resultVo.setId(saveId);
@@ -56,6 +53,8 @@ public class ActionController extends BaseController{
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResultVo modifyActon(@PathVariable long id,@RequestBody ActionRequestVo actionVo) {
 		actionVo.setId(id);
+		long uid = getUid();
+		actionVo.setUserId(uid);
 		long update = actionService.update(actionVo);
 		ResultVo resultVo = new ResultVo();
 		resultVo.setId(update);

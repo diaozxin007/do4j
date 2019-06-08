@@ -14,7 +14,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api//projects")
-public class ProjectController {
+public class ProjectController extends BaseController {
 
 	@Autowired
 	private ProjectService projectService;
@@ -36,6 +36,10 @@ public class ProjectController {
 	@ApiOperation(value="创建projects")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResultVo createProject(@RequestBody ProjectRequestVo requestVo){
+
+		long uid = getUid();
+		requestVo.setUserId(uid);
+
 		long save = projectService.save(requestVo);
 		ResultVo resultVo = new ResultVo();
 		requestVo.setId(save);
@@ -46,6 +50,8 @@ public class ProjectController {
 	@ApiOperation(value = "修改 projects")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResultVo updateProject(@PathVariable long id,@RequestBody ProjectRequestVo requestVo){
+		long uid = getUid();
+		requestVo.setUserId(uid);
 		requestVo.setId(id);
 		long update = projectService.update(requestVo);
 		ResultVo resultVo = new ResultVo();
