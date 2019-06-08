@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/actions")
 @Slf4j
-public class ActionController {
+public class ActionController extends BaseController{
 
 	@Autowired
 	private ActionService actionService;
@@ -33,6 +33,11 @@ public class ActionController {
 	@GetMapping("")
 	@ApiOperation(value = "获取action列表")
 	public List<ActionResponseVo> getActions() {
+
+		long uid = getUid();
+
+		log.info("uid is {}", uid);
+
 		return actionService.findByStatus(null);
 	}
 

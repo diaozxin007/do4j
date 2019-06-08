@@ -51,7 +51,7 @@ public class UserService {
 		UserEntity user = userRepository.findByUsername(username).orElseThrow(()->
 			new CustomException("error",HttpStatus.FORBIDDEN)
 		);
-		String token = tokenProvider.createToken(username, user.getRoles());
+		String token = tokenProvider.createToken(username, user.getRoles(),user.getId());
 		UserResponseVo userResponseVo = new UserResponseVo();
 		userResponseVo.setToken(token);
 		userResponseVo.setUsername(username);
@@ -84,7 +84,7 @@ public class UserService {
 
 		UserEntity save = userRepository.save(userEntity);
 
-		String token = tokenProvider.createToken(save.getUsername(), save.getRoles());
+		String token = tokenProvider.createToken(save.getUsername(), save.getRoles(),save.getId());
 		UserResponseVo userResponseVo = new UserResponseVo();
 		userResponseVo.setToken(token);
 		userResponseVo.setUsername(save.getUsername());

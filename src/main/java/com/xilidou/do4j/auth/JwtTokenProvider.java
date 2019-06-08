@@ -6,6 +6,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -41,10 +42,11 @@ public class JwtTokenProvider {
 		secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 	}
 
-	public String createToken(String username, Set<RoleEntity> roles) {
+	public String createToken(String username, Set<RoleEntity> roles,long uid) {
 
 		Claims claims = Jwts.claims().setSubject(username);
 		claims.put("auth", roles.stream().map(s -> new SimpleGrantedAuthority(s.getName().name())).collect(Collectors.toList()));
+		claims.put("uid",String.valueOf(uid));
 
 		Date now = new Date();
 		Date validity = new Date(now.getTime() + validityInMilliseconds);
@@ -64,6 +66,14 @@ public class JwtTokenProvider {
 
 	public String getUsername(String token) {
 		return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+	}
+
+	public long getUid(String token){
+
+		Claims body = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+
+		return NumberUtils.toLong((String) body.get("uid"));
+
 	}
 
 	public String resolveToken(HttpServletRequest req) {
