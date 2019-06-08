@@ -19,29 +19,29 @@ import java.util.stream.Collectors;
 @Service
 public class MyUserDetails implements UserDetailsService {
 
-  @Autowired
-  private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-  @Override
-  @Transactional
-  public UserDetails loadUserByUsername(String username) {
-      UserEntity user = userRepository.findByUsername(username)
-              .orElseThrow(()->
-                  new UsernameNotFoundException("User '" + username + "' not found")
-              );
+	@Override
+	@Transactional
+	public UserDetails loadUserByUsername(String username) {
+		UserEntity user = userRepository.findByUsername(username)
+				.orElseThrow(() ->
+						new UsernameNotFoundException("User '" + username + "' not found")
+				);
 
-      Set<RoleEntity> roles = user.getRoles();
+		Set<RoleEntity> roles = user.getRoles();
 
-      List<SimpleGrantedAuthority> authorities = roles.stream().map(t -> new SimpleGrantedAuthority(t.getName().name())).collect(Collectors.toList());
+		List<SimpleGrantedAuthority> authorities = roles.stream().map(t -> new SimpleGrantedAuthority(t.getName().name())).collect(Collectors.toList());
 
-      return User.withUsername(username)
-        .password(user.getPassword())
-        .authorities(authorities)
-        .accountExpired(false)
-        .accountLocked(false)
-        .credentialsExpired(false)
-        .disabled(false)
-        .build();
-  }
+		return User.withUsername(username)
+				.password(user.getPassword())
+				.authorities(authorities)
+				.accountExpired(false)
+				.accountLocked(false)
+				.credentialsExpired(false)
+				.disabled(false)
+				.build();
+	}
 
 }

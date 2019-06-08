@@ -14,8 +14,6 @@ public class Application {
 
 	public static void main(String[] args) {
 
-		log.info("time zone is {}",LocalDateTime.now());
-
 		SpringApplication.run(Application.class, args);
 	}
 
